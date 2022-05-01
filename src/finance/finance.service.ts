@@ -21,4 +21,16 @@ export class FinanceService {
     return yahooFinance.quoteSummary(`${to}${base}=X`);
   }
   
+
+  public historicalPrice({base = "TRY", to = "",period = 6, interval = "1wk"}: {base?: string, to?:string, period: number, interval: "1d" | "1wk" | "1mo"}) {
+    const today = new Date();
+    const endday = new Date(today.getFullYear(),today.getMonth() - period,today.getDate());
+    
+    return yahooFinance.historical(`${to}${base}=X`,{
+      period1: endday,
+      period2: today,
+      interval: interval,
+      includeAdjustedClose: true
+    });
+  }
 }

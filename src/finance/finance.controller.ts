@@ -21,8 +21,26 @@ export class FinanceController {
   @Get('quote-summary')
   public quoteSummary(@Query('base') base: string,@Query('to') to: string) {
     return this.financeService.quoteSummary({
-      base: base,
-      to: to
+      base: base.toUpperCase(),
+      to: to.toUpperCase()
+    })
+  }
+
+  @Get('quote-historical')
+  public quoteHistory(
+    @Query('base') base: string,
+    @Query('to') to: string,
+    @Query('period') _period: number | string,
+    @Query('interval') interval: "1d" | "1wk" | "1mo" ) {
+    
+    const period = Number.parseInt(_period.toString())
+    return this.financeService.historicalPrice({
+      base: base.toUpperCase(),
+      to: to.toUpperCase(),
+      period: period,
+      interval: interval
     })
   }
 }
+
+
