@@ -4,6 +4,7 @@ import { AuthModule } from './auth/auth.module';
 import { FinanceModule } from './finance/finance.module';
 import { ConfigModule } from '@nestjs/config';
 import { CurrenciesConfig } from 'src/config/currencies-config.module';
+import { CryptoModule } from './crypto/crypto.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { CurrenciesConfig } from 'src/config/currencies-config.module';
     ConfigModule.forRoot({isGlobal: true}),
     AuthModule, 
     FirebaseModule,
-    FinanceModule
+    FinanceModule,
+    CryptoModule
   ],
   controllers: [],
   providers: [],
