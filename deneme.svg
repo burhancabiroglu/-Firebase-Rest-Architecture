@@ -1,8 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg">
     <foreignObject width="100%" height="100%">
-            <embed xmlns="http://www.w3.org/1999/xhtml" src="http://example.com" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></embed>
-
-        <iframe xmlns="http://www.w3.org/1999/xhtml" src="http://example.com" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
         <iframe xmlns="http://www.w3.org/1999/xhtml" src="http://phrogz.net/svg/svg_in_xhtml5.xhtml" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
     </foreignObject>
 </svg>
