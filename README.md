@@ -5,15 +5,6 @@
 </p>
 
 
-ifdef::env-github[]
-image:https://img.youtube.com/vi/rAteGra5-xM/maxresdefault.jpg[link=https://youtu.be/rAteGra5-xM]
-endif::[]
-
-ifndef::env-github[]
-video::rAteGra5-xM[youtube]
-endif::[]
-
-
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
