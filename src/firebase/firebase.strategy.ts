@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
 import { FirebaseService } from './firebase.service';
 import { ExtractJwt, Strategy } from 'passport-firebase-jwt';
+import { PassportStrategy } from '@nestjs/passport';
 
 
 

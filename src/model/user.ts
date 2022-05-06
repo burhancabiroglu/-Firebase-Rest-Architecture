@@ -17,7 +17,7 @@ export class User {
   private _notificationToken: string;
   private _thirtyPartToken: string;
 
-  constructor({
+   constructor({
       id = uuid(),
       picture = "", 
       fullname, 
@@ -59,8 +59,37 @@ export class User {
     };
   }
 
+  public static fromJson(record: Record<string,any>): User {
+    return new User({
+      id: record.id,
+      picture: record.picture,
+      fullname: record.fullname,
+      email: record.email,
+      wallet: record.wallet,
+      subscription: record.subscription,
+      subscriptionHistory: record.subscriptionHistory,
+      region: record.region,
+      favorites: record.favorites
+    })
+  }
+
   public get id() {
     return this._id;
+  }
+  public copyWith({...props}:UserProps): User {
+    return new User({
+      id: props.id ?? this._id,
+      picture: props.picture ?? this._picture,
+      fullname: props.fullname ?? this._fullname,
+      email: props.email ?? this._email,
+      wallet: props.wallet ?? this._wallet,
+      subscription: props.subscription ?? this._subscription,
+      favorites: props.favorites ?? this._favorites,
+      region: props.region ?? this._region,
+      subscriptionHistory: props.subscriptionHistory ?? this._subscriptionHistory,
+      thirtyPartToken: props.thirtyPartToken ?? this._thirtyPartToken,
+      notificationToken: props.notificationToken ?? this._notificationToken
+    })
   }
 }
 
@@ -73,7 +102,7 @@ interface UserProps {
   fullname?: string;
   email?: string;
   wallet?: Wallet;
-  subscription: AccountSubscription;
+  subscription?: AccountSubscription;
   subscriptionHistory?: []
   region?: string;
   favorites?: [],

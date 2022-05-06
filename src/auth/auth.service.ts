@@ -24,7 +24,7 @@ export class AuthService {
     });
     return this.firebaseService.registerWithEmail(registerDto)
     .then((val)=> {
-      return this.firebaseService.storageUserDto(user);
+      return this.firebaseService.storageUserDto(user.copyWith({id:val.uid}));
     })
     .catch((e) => {
       throw new ConflictException('User already exist');
@@ -32,7 +32,9 @@ export class AuthService {
     
   }
 
-  public async profile() {}
+  public async profile(token: string) {
+    return this.firebaseService.getProfileWithToken(token)
+  }
 
   public async login(loginDto: LoginDto): Promise<string> {
     const cred = await this.firebaseService.loginWithEmailAndPassword(loginDto);

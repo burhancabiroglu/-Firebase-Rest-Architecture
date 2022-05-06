@@ -12,9 +12,11 @@ import { User } from 'src/model/user';
 export class FirebaseService {
   private auth: admin.auth.Auth;
   private firestore: admin.firestore.Firestore;
+  private database: admin.database.Database;
   constructor(@Inject(forwardRef(() => $FirebaseApp)) private _app: app.App) {
     this.auth = _app.auth();
     this.firestore = _app.firestore();
+    this.database = _app.database();
   }
 
   public async registerWithEmail(registerDto: RegisterDto): Promise<UserRecord> {
@@ -40,9 +42,12 @@ export class FirebaseService {
     );
   }
 
-  public getProfileWithToken(idToken: string) {
-    return this.auth.verifyIdToken(idToken);
+  public async getProfileWithToken(idToken: string) {
+    const userSnapshot = await this.auth.verifyIdToken(idToken);    
+    return User.fromJson((await this.firestore.collection('users').doc(userSnapshot.uid).get()).data()).toJson();
   }
 
-
+  public get db() {
+    return this.database;
+  }
 }

@@ -14,7 +14,7 @@ export class FWTGuard extends AuthGuard('firebase-auth'){
     ]);    
     if (isPublic) {
       return true;
-    }
+    }    
     return super.canActivate(context);
   }
 }
