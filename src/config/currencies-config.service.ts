@@ -10,9 +10,24 @@ export class CurrenciesConfigService {
 
 
   constructor(private firebaseService: FirebaseService,@Inject(forwardRef(() => HttpService)) private httpService: HttpService,private configService: ConfigService) {
-    setTimeout(() => {
-      this.lateInit()
-    }, 3000);
+    this._fiatCurrencies  = new Promise((resolve,reject) => {
+      if(firebaseService?.db?.ref == null) {
+        setTimeout(() => {
+          this.firebaseService.db.ref('fiatCurrencies').on('value',(snapshot) => {
+            resolve(snapshot.val());
+          }) 
+        }, 1500);
+      }
+    })   
+    this._crptoCurrencies  = new Promise((resolve,reject) => {
+      if(firebaseService?.db?.ref == null) {
+        setTimeout(() => {
+          this.firebaseService.db.ref('cryptoCurrencies').on('value',(snapshot) => {
+            resolve(snapshot.val());
+          }) 
+        }, 1500);
+      }
+    })
   }
 
   get fiats() {
@@ -21,23 +36,5 @@ export class CurrenciesConfigService {
 
   get cryptoList() {
     return this._crptoCurrencies;
-  }
-
-
-  public async lateInit() {
-    this.firebaseService.db.ref('fiatCurrencies').on('value',(snapshot) => {
-      this._fiatCurrencies  = new Promise((resolve,reject) => {
-        resolve(snapshot.val())
-      })      
-    }) 
-    this.firebaseService.db.ref('crytoCurrencies').on('value',(snapshot) => {
-      this._crptoCurrencies  = new Promise((resolve,reject) => {
-        resolve(snapshot.val())
-      })      
-    }) 
-  }
-  
-  
-  
-
+  }  
 }

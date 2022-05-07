@@ -1,14 +1,23 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { CurrenciesConfigService } from 'src/config/currencies-config.service';
 import yahooFinance from 'yahoo-finance2';
 
 @Injectable()
 export class CryptoService {
-  constructor(private currenciesConfig: CurrenciesConfigService) {}
+  constructor(private httpService: HttpService,private currenciesConfig: CurrenciesConfigService) {}
 
   public async getCryptoCurrencies() {
     const list = await this.currenciesConfig.cryptoList;
     return yahooFinance.quote(list.map((e,_)=>`${ e.code}`))
+  }
+
+  public async getCryptoFlag(base: string) {    
+    let data = null;
+    await this.httpService.get('https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png', {responseType: 'arraybuffer'}).forEach((e) => {
+      return data = e.data;
+    });    
+    return data;
   }
 
   public quoteSummary({base = ""}: {base?: string}) {

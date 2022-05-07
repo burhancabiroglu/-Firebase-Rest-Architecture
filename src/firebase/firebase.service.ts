@@ -1,11 +1,11 @@
-import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import { forwardRef, HttpException, Inject, Injectable } from '@nestjs/common';
 import { app } from 'firebase-admin';
 import * as admin from 'firebase-admin';
 import { $FirebaseApp } from './firebase.module';
 import { RegisterDto } from 'src/auth/dto/register.dto';
 import { UserRecord } from 'firebase-admin/lib/auth/user-record';
 import { LoginDto } from 'src/auth/dto/login.dto';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider } from 'firebase/auth';
 import { User } from 'src/model/user';
 
 @Injectable()
@@ -43,8 +43,14 @@ export class FirebaseService {
   }
 
   public async getProfileWithToken(idToken: string) {
-    const userSnapshot = await this.auth.verifyIdToken(idToken);    
-    return User.fromJson((await this.firestore.collection('users').doc(userSnapshot.uid).get()).data()).toJson();
+    let userSnapshot = null;
+    try {
+      userSnapshot = await this.auth.verifyIdToken(idToken);    
+    }
+    catch(e) {
+      throw new HttpException(e,400);
+    }
+    return User.fromJson((await this.firestore.collection('users').doc(userSnapshot?.uid).get()).data()).toJson();
   }
 
   public get db() {

@@ -9,7 +9,7 @@ export class FinanceService {
   constructor(private currenciesConfig: CurrenciesConfigService) {}
 
   public async getFiatCurrencies({base = "TRY"}: {base?: string}) {
-    const list = await this.currenciesConfig.fiats;
+    const list = await this.currenciesConfig.fiats;        
     return yahooFinance.quote(list.map((e,i) => `${e.code}${base}=X`))
   }
 

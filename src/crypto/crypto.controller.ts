@@ -1,5 +1,7 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, Res } from '@nestjs/common';
 import { CryptoService } from './crypto.service';
+import { query, Response } from 'express';
+
 
 @Controller('crypto')
 export class CryptoController {
@@ -13,6 +15,13 @@ export class CryptoController {
   @Get('quote-summary')
   public quoteSummary(@Query('base') base: string) {
     return this.cryptoService.quoteSummary({base: base.toUpperCase()})
+  }
+
+  @Get('flag')
+  public async cryptoFlag(@Query('base') base: string, @Res() res: Response) {
+    res.setHeader("Content-Type", "image/png");
+    const result = await this.cryptoService.getCryptoFlag(base + '-USD');
+    return res.send(Buffer.from(result))
   }
 
   @Get('quote-historical')

@@ -1,4 +1,5 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, HttpException, Injectable } from '@nestjs/common';
+import { FirebaseError } from 'firebase-admin';
 import { FirebaseService } from 'src/firebase/firebase.service';
 import { User } from 'src/model/user';
 import { LoginDto } from './dto/login.dto';
@@ -27,19 +28,24 @@ export class AuthService {
       return this.firebaseService.storageUserDto(user.copyWith({id:val.uid}));
     })
     .catch((e) => {
-      throw new ConflictException('User already exist');
+      throw new HttpException(e.message,400);
     });
     
   }
 
-  public async profile(token: string) {
-    return this.firebaseService.getProfileWithToken(token)
+  public profile(token: string) {
+    return this.firebaseService.getProfileWithToken(token).catch((e: FirebaseError)=> {
+      if(e) throw new HttpException(e.message,Number.parseInt(e.code));
+    })
   }
 
   public async login(loginDto: LoginDto): Promise<string> {
-    const cred = await this.firebaseService.loginWithEmailAndPassword(loginDto);
-    const fwt = await cred.user.getIdToken();
-    return fwt;
+    return this.firebaseService.loginWithEmailAndPassword(loginDto).then(async (resp)=>{
+      const fwt = await resp.user.getIdToken();
+      return fwt;
+    }).catch((e)=>{      
+       throw new HttpException('Login Error',400);
+    })
   }
 
   
