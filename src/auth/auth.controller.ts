@@ -1,9 +1,11 @@
 import { Body, Controller, Get, Post, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { ApiKeyGuard } from 'src/app/apikey.guard';
 import { FWTGuard } from 'src/firebase/firebase.guard';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 
+@UseGuards(ApiKeyGuard)
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}

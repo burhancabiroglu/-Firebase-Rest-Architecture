@@ -1,8 +1,9 @@
-import { Controller, Get, Query, Res } from '@nestjs/common';
+import { Controller, Get, Query, Res, UseGuards } from '@nestjs/common';
 import { CryptoService } from './crypto.service';
 import { query, Response } from 'express';
+import { ApiKeyGuard } from 'src/app/apikey.guard';
 
-
+@UseGuards(ApiKeyGuard)
 @Controller('crypto')
 export class CryptoController {
   constructor(private cryptoService: CryptoService) {}

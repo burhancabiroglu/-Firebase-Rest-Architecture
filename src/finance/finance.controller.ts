@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Query, Res } from '@nestjs/common';
+import { Controller, Get, Post, Query, Res, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { query, Response } from 'express';
+import { ApiKeyGuard } from 'src/app/apikey.guard';
 import { FinanceService } from './finance.service';
 
+@UseGuards(ApiKeyGuard)
 @Controller('finance')
 export class FinanceController {
   constructor(private financeService: FinanceService) {}
