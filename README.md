@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" height="80 "alt="Nest Logo" /></a>
-    <a href="https://firebase.google.com" target="blank"><img src="https://www.gstatic.com/devrel-devsite/prod/v0d244f667a3683225cca86d0ecf9b9b81b1e734e55a030bdcd3f3094b835c987/firebase/images/lockup.svg" height="800 alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" height="60 "alt="Nest Logo" /></a>
+    <a href="https://firebase.google.com" target="blank"><img src="https://www.gstatic.com/devrel-devsite/prod/v0d244f667a3683225cca86d0ecf9b9b81b1e734e55a030bdcd3f3094b835c987/firebase/images/lockup.svg" height="60 alt="Nest Logo" /></a>
 </p>
 
 
@@ -11,8 +11,8 @@
 <a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
 </p>
 
-[Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-[Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)
+[Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)(https://opencollective.com/nest#backer)
+[Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)
 
 ## Description
 It includes the backend services and endpoints of the Money Exchange application. It is built using firebase framework and nestjs framework. It is in monolithic architecture.
