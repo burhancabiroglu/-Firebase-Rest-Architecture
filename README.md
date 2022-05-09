@@ -22,12 +22,12 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  [![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)
 
 ## Description
+It includes the backend services and endpoints of the Money Exchange application. It is built using firebase framework and nestjs framework. It is in monolithic architecture.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
 
@@ -65,7 +65,7 @@ $ npm run test:cov
 
 - Author - [Burhan Cabiroglu](https://github.com/burhancabiroglu)
 - Website - [@github/BurhanCabiroglu](https://github.com/burhancabiroglu)
-- Linkedin - [@Linkedin/BurhanCabiroglu](https://www.linkedin.com/in/burhancabiroglu/)
+- Linkedin - [@linkedin/BurhanCabiroglu](https://www.linkedin.com/in/burhancabiroglu/)
 
 ## License
 
